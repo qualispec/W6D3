@@ -1,5 +1,40 @@
 <html>
 <head>
+  <style>
+    .grid {
+      height:30px;
+      width: 30px;
+      border: 1px solid white;
+      float: left;
+    }
+
+    .snake {
+      background: red;
+    }
+
+    .apple {
+      background: green;
+    }
+
+    .game_container {
+      width: 640px;
+      height: 640px;
+      border: 1px solid black;
+      float: left;
+    }
+
+    .sidebar {
+      width: 200px;
+      height: 640px;
+      border-right: 1px solid black;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      float: left;
+      text-align: center;
+    }
+
+
+  </style>
 </head>
 
 <body>
@@ -9,5 +44,16 @@
   <script type="text/javascript" src="underscore-min.js"></script>
   <script type="text/javascript" src="snake.js"></script>
   <script type="text/javascript" src="snake_ui.js"></script>
+
+  <div class="game_container">
+
+  </div>
+  <div class="sidebar">
+    <h1>Snake!</h1>
+    <h2>Snake length:</h2>
+    <div class="stats">
+    </div>
+
+  </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-STEP_TIME_MILLIS = 100;
+STEP_TIME_MILLIS = 150;
 
 $('html').keydown(function (event) {
   console.log("You pressed keycode: " + event.keyCode);
@@ -18,7 +18,8 @@ $('html').keydown(function (event) {
   }
   game.isDead();
   clear();
-  println(game.makeBoardString());
+  // println(game.makeBoardString());
+  createBoard(game);
   window.setTimeout(STEP_TIME_MILLIS);
 } );
 
@@ -28,9 +29,25 @@ function println(string) {
   $('.output').append("\n");
 }
 
+function createBoard(game) {
+
+  for(row = 0; row < game.board.board.length; row++) {
+    for (col = 0; col < game.board.board[0].length; col++) {
+
+      if (game.containsCoord(game.snake.snake, [row, col])) {
+        $('.game_container').append('<div class="snake grid"></div>');
+      } else if (game.containsCoord(game.apple, [row, col])) {
+        $('.game_container').append('<div class="apple grid"></div>');
+      } else {
+        $('.game_container').append('<div class="grid"></div>');
+      }
+    }
+  }
+}
+
 
 function clear() {
-  $('.output').html("")
+  $('.game_container').html("")
 }
 
 function runLoop() {
@@ -44,11 +61,15 @@ function runStep() {
     game.snake.step();
     // game.eatsApple();
     clear();
-    println(game.makeBoardString());
+    // println(game.makeBoardString());
+    createBoard(game);
+    $('.stats').html(game.snake.snake.length);
     runLoop();
   } else {
     clear();
-    println(game.makeBoardString());
+    // println(game.makeBoardString());
+    createBoard(game);
+    alert("Game Over!");
   }
 }
 

@@ -24,7 +24,7 @@ function makeSnake() {
     game: undefined,
 
     initialize: function(game) {
-      this.snake = [ [10, 10], [10, 11], [10, 12], [10, 13], [10, 14] ]
+      this.snake = [ [10, 10], [10, 11], [10, 12] ]
                      // [10, 15], [10, 16], [10, 17], [10, 18] ]; //left
       // this.snake = [ [10, 10], [10, 9], [10, 8] ]; // right
       // this.snake = [ [10, 10], [9, 10], [8, 10] ]; // down
@@ -134,7 +134,6 @@ function makeGame() {
 
     makeBoardString: function() {
       var board_string = "";
-      console.log(this.apple);
 
       for(row = 0; row < this.board.board.length; row++) {
         for (col = 0; col < this.board.board[0].length; col++) {
