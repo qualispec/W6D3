@@ -1,5 +1,5 @@
-require('./underscore-min.js');
-var sh = console.log;
+// var _ = require('./underscore-min.js');
+// var sh = console.log;
 
 function makeBoard() {
     return {
@@ -39,7 +39,7 @@ function makeSnake() {
         } else {
           return 'right';
         }
-      } else {        // Up or down
+      } else {        // Up or Down
         if ( head[0] < second[0] ) {
           return 'up';
         } else {
@@ -69,7 +69,7 @@ function makeSnake() {
         console.log("you're going down and trying to turn up");
       } else {
         this.changePos(direction);
-        console.log("you've successfully turned" + direction);
+        console.log("you've successfully turned " + direction);
       }
     },
 
@@ -91,17 +91,83 @@ function makeSnake() {
           break;
       }
       this.snake.pop();
-      sh(this.snake);
+      console.log(this.snake);
     }
+  }
+}
+
+function makeGame() {
+  return {
+
+    board: undefined,
+    snake: undefined,
+
+    initialize: function() {
+      this.board = makeBoard();
+      this.board.initialize(20);
+
+      this.snake = makeSnake();
+      this.snake.initialize();
+    },
+
+    isSnakeCoord: function(coordinate) {
+      row = coordinate[0];
+      col = coordinate[1];
+      snakeCoordBool = false;
+
+      this.snake.snake.forEach( function(coord) {
+
+        if (coord[0] == row && coord[1] == col) {
+          snakeCoordBool = true;
+        }
+      } );
+      return snakeCoordBool;
+    },
+
+    makeBoardString: function() {
+      var board_string = "";
+
+      for(row = 0; row < this.board.board.length; row++) {
+
+        for (col = 0; col < this.board.board[0].length; col++) {
+
+          if (this.isSnakeCoord([row, col])) {
+            board_string += "[X]";
+          } else if (this.board.board[row][col] === '') {
+            board_string += "[ ]";
+          }
+        }
+        board_string += "\n";
+      }
+      return board_string;
+    }
+
 
   }
 }
 
-function makeFood() {
 
-}
 
-module.exports = {
-  makeBoard: makeBoard,
-  makeSnake: makeSnake
-}
+
+
+// function clear() {
+//   $('.output').html("");
+// }
+
+// println("Loaded it up!");
+// var input = prompt("Type in your input:");
+// println(input);
+
+
+
+
+
+
+
+
+
+// module.exports = {
+//   makeBoard: makeBoard,
+//   makeSnake: makeSnake,
+//   makeGame: makeGame
+// }
