@@ -1,4 +1,4 @@
-STEP_TIME_MILLIS = 500;
+STEP_TIME_MILLIS = 100;
 
 $('html').keydown(function (event) {
   console.log("You pressed keycode: " + event.keyCode);
@@ -27,6 +27,7 @@ function println(string) {
   $('.output').append(string);
   $('.output').append("\n");
 }
+
 
 function clear() {
   $('.output').html("")

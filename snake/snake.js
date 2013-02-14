@@ -21,13 +21,15 @@ function makeBoard() {
 function makeSnake() {
   return {
     snake: undefined,
+    game: undefined,
 
-    initialize: function() {
+    initialize: function(game) {
       this.snake = [ [10, 10], [10, 11], [10, 12], [10, 13], [10, 14] ]
                      // [10, 15], [10, 16], [10, 17], [10, 18] ]; //left
       // this.snake = [ [10, 10], [10, 9], [10, 8] ]; // right
       // this.snake = [ [10, 10], [9, 10], [8, 10] ]; // down
       // this.snake = [ [10, 10], [11, 10], [12, 10] ]; // up
+      this.game = game;
     },
 
     findDirection: function() {
@@ -92,7 +94,7 @@ function makeSnake() {
           this.snake.unshift([ head[0], head[1] + 1 ]);
           break;
       }
-      if (this.eatsApple) {
+      if (game.eatsApple()) {
         // do nothing
       } else {
         this.snake.pop();
@@ -114,7 +116,7 @@ function makeGame() {
       this.board.initialize(20);
 
       this.snake = makeSnake();
-      this.snake.initialize();
+      this.snake.initialize(this);
 
       this.apple = [ [Math.floor((Math.random()*20)), Math.floor((Math.random()*20))] ];
     },
@@ -172,6 +174,7 @@ function makeGame() {
         this.apple.push([Math.floor((Math.random()*20)), Math.floor((Math.random()*20))]);
         return true;
       }
+      return false;
     }
 
   }
